@@ -35,6 +35,8 @@ let planeGeometry = new THREE.PlaneGeometry(50,50);//ancho y alto
 let planeMaterial = new THREE.MeshBasicMaterial({map: floorTexture, side: THREE.DoubleSide});
 let floorPlane = new THREE.Mesh(planeGeometry, planeMaterial);
 
+floorPlane.rotation.x = Math.PI/2; //rotacion de 90 grados
+floorPlane.position.y = -Math.PI;
 scene.add(floorPlane);
 
 //controles
