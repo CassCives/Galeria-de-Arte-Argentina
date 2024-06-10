@@ -30,10 +30,9 @@ scene.add(cube);
 
 //crear el plano del piso
 //texturas del piso
-let textureLoader = new THREE.TextureLoader(); 
-textureLoader.load("img/WoodFloor.jpg");
+let floorTexture = new THREE.TextureLoader().load("img/WoodFloor.jpg");
 let planeGeometry = new THREE.PlaneGeometry(50,50);//ancho y alto
-let planeMaterial = new THREE.MeshBasicMaterial({color: 0xffffff, side: THREE.DoubleSide});
+let planeMaterial = new THREE.MeshBasicMaterial({map: floorTexture, side: THREE.DoubleSide});
 let floorPlane = new THREE.Mesh(planeGeometry, planeMaterial);
 
 scene.add(floorPlane);
