@@ -14,26 +14,26 @@ renderer.setClearColor(0xfffff, 1); //cambio fondo a blanco
 document.body.appendChild(renderer.domElement); //añade renderer a html
 
 //luz de ambiente
-let ambientLight = new THREE.AmbientLight(0x101010,1.0); //color, intensidad
+const ambientLight = new THREE.AmbientLight(0x101010,1.0); //color, intensidad
 //ambientLight.position = camera.position; //la luz sigue a la camara
 scene.add(ambientLight);
 //luz direccional
-let sunLight = new THREE.DirectionalLight(0xddddd,1.0);
+const sunLight = new THREE.DirectionalLight(0xddddd,1.0);
 sunLight.position.y = 15;
 scene.add(sunLight);
 
-let geometry = new THREE.BoxGeometry(1, 1, 1); //boxgeometry es la forma del objeto
-let material = new THREE.MeshBasicMaterial({color: 0xff000}); //color del objeto
-let cube = new THREE.Mesh(geometry, material);
+const geometry = new THREE.BoxGeometry(1, 1, 1); //boxgeometry es la forma del objeto
+const material = new THREE.MeshBasicMaterial({color: 0xff000}); //color del objeto
+const cube = new THREE.Mesh(geometry, material);
 
 scene.add(cube);
 
 //crear el plano del piso
 //texturas del piso
-let floorTexture = new THREE.TextureLoader().load("img/WoodFloor.jpg");
-let planeGeometry = new THREE.PlaneGeometry(50,50);//ancho y alto
-let planeMaterial = new THREE.MeshBasicMaterial({map: floorTexture, side: THREE.DoubleSide});
-let floorPlane = new THREE.Mesh(planeGeometry, planeMaterial);
+const floorTexture = new THREE.TextureLoader().load("img/WoodFloor.jpg");
+const planeGeometry = new THREE.PlaneGeometry(50,50);//ancho y alto
+const planeMaterial = new THREE.MeshBasicMaterial({map: floorTexture, side: THREE.DoubleSide});
+const floorPlane = new THREE.Mesh(planeGeometry, planeMaterial);
 
 floorPlane.rotation.x = Math.PI/2; //rotacion de 90 grados
 floorPlane.position.y = -Math.PI;
