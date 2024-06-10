@@ -65,6 +65,14 @@ const rightWall = new THREE.Mesh(
 rightWall.position.x = 20;
 rightWall.rotation.y = Math.PI/2;
 wallGroup.add(rightWall);
+
+//crear techo
+const ceilingGeometry = new THREE.PlaneGeometry(50,50);
+const ceilingMaterial = new THREE.MeshBasicMaterial(({color: "white"}))
+const ceilingPlane = new THREE.Mesh(ceilingGeometry,ceilingMaterial);
+ceilingPlane.rotation.x = Math.PI/2;
+ceilingPlane.position.y = 10;
+scene.add(ceilingPlane);
 //controles
 document.addEventListener("keydown", onKeyDown, false);
 
