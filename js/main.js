@@ -39,6 +39,32 @@ floorPlane.rotation.x = Math.PI/2; //rotacion de 90 grados
 floorPlane.position.y = -Math.PI;
 scene.add(floorPlane);
 
+//crear paredes
+const wallGroup = new THREE.Group();//grupo que va a contener las paredes
+scene.add(wallGroup);
+//pared del fondo
+const frontWall = new THREE.Mesh(
+    new THREE.BoxGeometry(50,20,0.001),
+    new THREE.MeshBasicMaterial({color: "yellow"})
+);
+frontWall.position.z = -20;
+wallGroup.add(frontWall);
+//pared izquierda
+const leftWall = new THREE.Mesh(
+    new THREE.BoxGeometry(50,20,0.001),
+    new THREE.MeshBasicMaterial({color: "red"})
+);
+leftWall.position.x = -20;
+leftWall.rotation.y = Math.PI/2;//rota 90 grados 
+wallGroup.add(leftWall);
+//pared derecha
+const rightWall = new THREE.Mesh(
+    new THREE.BoxGeometry(50,20,0.001),
+    new THREE.MeshBasicMaterial({color: "brown"})
+)
+rightWall.position.x = 20;
+rightWall.rotation.y = Math.PI/2;
+wallGroup.add(rightWall);
 //controles
 document.addEventListener("keydown", onKeyDown, false);
 
