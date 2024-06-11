@@ -79,16 +79,20 @@ document.addEventListener("keydown", onKeyDown, false);
 function onKeyDown(event){
     //se usan keycodes para saber que tecla es
     switch(event.which){
-    case 37:
+    case 37://izq
+    case 65://a
         camera.translateX(0.05);
         break;
-    case 39:
-        camera.translateX(-0.05);
-        break;
-    case 38:
+    case 38://arriba
+    case 87://w
         camera.translateY(-0.05);
         break;
-    case 40:
+    case 39://derecha
+    case 68://d
+        camera.translateX(-0.05);
+        break;
+    case 40://abajo
+    case 83://s
         camera.translateY(0.05);
         break;
     }
