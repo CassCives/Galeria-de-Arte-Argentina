@@ -31,6 +31,9 @@ scene.add(cube);
 //crear el plano del piso
 //texturas del piso
 const floorTexture = new THREE.TextureLoader().load("img/WoodFloor.jpg");
+floorTexture.wrapS = THREE.RepeatWrapping;
+floorTexture.wrapT = THREE.RepeatWrapping;
+floorTexture.repeat.set(20,20);
 const planeGeometry = new THREE.PlaneGeometry(50,50);//ancho y alto
 const planeMaterial = new THREE.MeshBasicMaterial({map: floorTexture, side: THREE.DoubleSide});
 const floorPlane = new THREE.Mesh(planeGeometry, planeMaterial);
