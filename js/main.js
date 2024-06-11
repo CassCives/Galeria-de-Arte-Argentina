@@ -78,18 +78,19 @@ document.addEventListener("keydown", onKeyDown, false);
 
 function onKeyDown(event){
     //se usan keycodes para saber que tecla es
-    let keycode = event.which;
-    if(keycode == 39){
-        camera.translateX(-0.05);
-    }
-    else if(keycode == 37){
+    switch(event.which){
+    case 37:
         camera.translateX(0.05);
-    }
-    else if(keycode == 38){
+        break;
+    case 39:
+        camera.translateX(-0.05);
+        break;
+    case 38:
         camera.translateY(-0.05);
-    }
-    else if(keycode == 40){
+        break;
+    case 40:
         camera.translateY(0.05);
+        break;
     }
 };
 
