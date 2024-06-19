@@ -95,6 +95,28 @@ const painting2 = createPainting('/artworks/1.jpg', 10, 5, new THREE.Vector3(10,
 scene.add(painting1,painting2);
 
 //controles
+
+const controls = new PointerLockControls(camera, document.body);
+//bloquear el puntero(se activan los controles), y oculta el menu cuando empieza la experiencia
+function startExperience(){
+    //bloquear puntero
+    controls.lock();
+    hideMenu();
+}
+const playButton = document.getElementById("play_button");
+playButton.addEventListener("click", startExperience);
+
+//ocultar menu
+function hideMenu(){
+    const menu = document.getElementById("menu");
+    menu.style.display = 'none';
+};
+//ver menu
+function showMenu(){
+    const menu = document.getElementById("menu");
+    menu.style.display = 'block';
+}
+
 document.addEventListener("keydown", onKeyDown, false);
 
 function onKeyDown(event){
@@ -102,19 +124,19 @@ function onKeyDown(event){
     switch(event.which){
     case 37://izq
     case 65://a
-        camera.translateX(0.05);
+        controls.moveRight(-0.08);
         break;
     case 38://arriba
     case 87://w
-        camera.translateY(-0.05);
+        controls.moveForward(0.08);
         break;
     case 39://derecha
     case 68://d
-        camera.translateX(-0.05);
+        controls.moveRight(0.08);
         break;
     case 40://abajo
     case 83://s
-        camera.translateY(0.05);
+        controls.moveForward(-0.08);
         break;
     }
 };
