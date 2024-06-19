@@ -76,6 +76,24 @@ const ceilingPlane = new THREE.Mesh(ceilingGeometry,ceilingMaterial);
 ceilingPlane.rotation.x = Math.PI/2;
 ceilingPlane.position.y = 10;
 scene.add(ceilingPlane);
+
+//crear pinturas
+function createPainting(imageURL, width, height, position){
+    const TextureLoader = new THREE.TextureLoader();
+    const paintingTexture = TextureLoader.load(imageURL);
+    const paintingMaterial = new THREE.MeshBasicMaterial({
+        map: paintingTexture,
+    });
+    const paintingGeometry = new THREE.PlaneGeometry(width, height);
+    const painting = new THREE.Mesh(paintingGeometry, paintingMaterial);
+    painting.position.set(position.x, position.y, position.z);
+    return painting;
+}
+
+const painting1 = createPainting('/artworks/0.jpg', 10, 5, new THREE.Vector3(-10,5, -19.99));
+const painting2 = createPainting('/artworks/1.jpg', 10, 5, new THREE.Vector3(10,5, -19.99));
+scene.add(painting1,painting2);
+
 //controles
 document.addEventListener("keydown", onKeyDown, false);
 
