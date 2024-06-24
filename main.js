@@ -80,6 +80,11 @@ const backWall = new THREE.Mesh(
 backWall.position.z = 25;
 wallGroup.add(backWall);
 
+for(let i=0;i<wallGroup.children.length;i++){
+    wallGroup.children[i].BoundingBox = new THREE.Box3();
+    wallGroup.children[i].BoundingBox.setFromObject(wallGroup.children[i]);
+}
+
 
 //crear techo
 const ceilingGeometry = new THREE.PlaneGeometry(50,50);
@@ -105,6 +110,24 @@ function createPainting(imageURL, width, height, position){
 const painting1 = createPainting('/artworks/0.jpg', 10, 5, new THREE.Vector3(-10,5, -19.99));
 const painting2 = createPainting('/artworks/1.jpg', 10, 5, new THREE.Vector3(10,5, -19.99));
 scene.add(painting1,painting2);
+
+//colisiones
+function checkCollision(){
+    const playerBoundingBox = new THREE.Box3();
+    const cameraWorldPosition = new THREE.Vector3();
+    camera.getWorldPosition(cameraWorldPosition);
+    playerBoundingBox.setFromCenterAndSize(//toma el centro y tamaño de la caja, seteamos la caja del jugador y centramos en la world position de la camara
+        cameraWorldPosition,
+        new THREE.Vector3(1,1,1)
+    );
+    for(let i = 0; i < wallGroup.children.length;i++){
+        const wall = wallGroup.children[i];
+        if(playerBoundingBox.intersectsBox(wall.BoundingBox)){
+            return true;
+        }
+    }
+    return false;
+}
 
 //controles
 
@@ -178,6 +201,10 @@ function updateMovement(delta){
     }
     if(keyPressed.ArrowDown || keyPressed.s){
         controls.moveForward(-moveSpeed);
+    }
+
+    if(checkCollision()){
+        camera.position.copy(previousPosition); 
     }
 }
 
