@@ -129,36 +129,66 @@ function showMenu(){
     menu.style.display = 'block';
 }
 
-document.addEventListener("keydown", onKeyDown, false);
-
-function onKeyDown(event){
-    //se usan keycodes para saber que tecla es
-    switch(event.which){
-    case 37://izq
-    case 65://a
-        controls.moveRight(-0.08);
-        break;
-    case 38://arriba
-    case 87://w
-        controls.moveForward(0.08);
-        break;
-    case 39://derecha
-    case 68://d
-        controls.moveRight(0.08);
-        break;
-    case 40://abajo
-    case 83://s
-        controls.moveForward(-0.08);
-        break;
-    }
+//teclas presionadas
+const keyPressed = {
+    ArrowUp: false,
+    ArrowDown: false,
+    ArrowLeft: false,
+    ArrowRight: false,
+    w: false,
+    a: false,
+    s: false,
+    d: false,
 };
+//cuando presionan
+document.addEventListener(
+    'keydown',
+    (event) => {
+        if(event.key in keyPressed){
+            keyPressed[event.key] = true;
+        }
+    },
+    false
+);
+//cuando sueltan
+document.addEventListener(
+    'keyup',
+    (event) => {
+        if(event.key in keyPressed){
+            keyPressed[event.key] = false;
+        }
+    },
+    false
+);
+
+//movimiento
+const clock = new THREE.Clock();//tiempo en el medio de los frames
+
+function updateMovement(delta){
+    const moveSpeed = 5 * delta; //moveSpeed es la distancia que se mueve la camara en un segundo, independiente del framerate
+    const previousPosition = camera.position.clone();//guardo la posicion anterior para ver colisiones
+    if(keyPressed.ArrowRight || keyPressed.d){
+        controls.moveRight(moveSpeed);
+    }
+    if(keyPressed.ArrowLeft || keyPressed.a){
+        controls.moveRight(-moveSpeed);
+    }
+    if(keyPressed.ArrowUp || keyPressed.w){
+        controls.moveForward(moveSpeed);
+    }
+    if(keyPressed.ArrowDown || keyPressed.s){
+        controls.moveForward(-moveSpeed);
+    }
+}
 
 let render = function() {
     cube.rotation.x += 0.01;
     cube.rotation.y += 0.01;
+    const delta = clock.getDelta();
+    updateMovement(delta);
     renderer.render(scene,camera);//renderizar
 
-    requestAnimationFrame(render);//1 vez por frame, independiente de framerate
+    requestAnimationFrame(render);//llama a render() antes del proximo repaint
 };
 
 render();
