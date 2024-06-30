@@ -3,19 +3,25 @@ import { createBoundingBoxes } from './modules/boundingBox';
 import { createCeiling } from './modules/ceiling';
 import { setupFloor } from './modules/floor';
 import { createWalls } from './modules/walls';
-import { PointerLockControls, ThreeMFLoader } from 'three-stdlib';
-const scene = new THREE.Scene(); //crear la escena
+import { scene,setupScene } from './modules/scene';
+import { setupPlayButton } from "./modules/menu.js";
 
-const camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000); //camara invisible, es un pov, da profundidad, parametros fov y aspect ratio, lejos y cerca
+let { camera, controls, renderer } = setupScene();
 
-scene.add(camera); //se añade a la escena
-camera.position.z = 5; //se mueve la camara para atras 5 unidades
+const textureLoader = new THREE.TextureLoader();
+
+setupPlayButton(controls);
+
+// const camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000); //camara invisible, es un pov, da profundidad, parametros fov y aspect ratio, lejos y cerca
+
+// scene.add(camera); //se añade a la escena
+// camera.position.z = 5; //se mueve la camara para atras 5 unidades
 
 //Renderer
-const renderer = new THREE.WebGLRenderer({antialias: true});
-renderer.setSize(window.innerWidth,window.innerHeight);
-renderer.setClearColor(0xfffff, 1); //cambio fondo a blanco
-document.body.appendChild(renderer.domElement); //añade renderer a html
+// const renderer = new THREE.WebGLRenderer({antialias: true});
+// renderer.setSize(window.innerWidth,window.innerHeight);
+// renderer.setClearColor(0xfffff, 1); //cambio fondo a blanco
+// document.body.appendChild(renderer.domElement); //añade renderer a html
 
 //luz de ambiente
 const ambientLight = new THREE.AmbientLight(0x101010,1.0); //color, intensidad
@@ -31,8 +37,6 @@ const material = new THREE.MeshBasicMaterial({color: 0xff000}); //color del obje
 const cube = new THREE.Mesh(geometry, material);
 
 scene.add(cube);
-
-const textureLoader = new THREE.TextureLoader();
 
 //crear el plano del piso
 setupFloor(scene);
@@ -82,26 +86,26 @@ function checkCollision(){
 
 //controles
 
-const controls = new PointerLockControls(camera, document.body);
-//bloquear el puntero(se activan los controles), y oculta el menu cuando empieza la experiencia
-function startExperience(){
-    //bloquear puntero
-    controls.lock();
-    hideMenu();
-}
-const playButton = document.getElementById("play_button");
-playButton.addEventListener("click", startExperience);
+// const controls = new PointerLockControls(camera, document.body);
+// //bloquear el puntero(se activan los controles), y oculta el menu cuando empieza la experiencia
+// function startExperience(){
+//     //bloquear puntero
+//     controls.lock();
+//     hideMenu();
+// }
+// const playButton = document.getElementById("play_button");
+// playButton.addEventListener("click", startExperience);
 
-//ocultar menu
-function hideMenu(){
-    const menu = document.getElementById("menu");
-    menu.style.display = 'none';
-};
-//ver menu
-function showMenu(){
-    const menu = document.getElementById("menu");
-    menu.style.display = 'block';
-}
+// //ocultar menu
+// function hideMenu(){
+//     const menu = document.getElementById("menu");
+//     menu.style.display = 'none';
+// };
+// //ver menu
+// function showMenu(){
+//     const menu = document.getElementById("menu");
+//     menu.style.display = 'block';
+// }
 
 //teclas presionadas
 const keyPressed = {
