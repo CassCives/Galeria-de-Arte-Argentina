@@ -39,42 +39,6 @@ setupFloor(scene);
 
 //crear paredes
 const walls = createWalls(scene, textureLoader);
-// const wallGroup = new THREE.Group();//grupo que va a contener las paredes
-// scene.add(wallGroup);
-//pared del fondo
-// const wallMaterial = new THREE.TextureLoader().load("img/Wall1.jpg");
-// wallMaterial.wrapS = THREE.RepeatWrapping;
-// wallMaterial.wrapT = THREE.RepeatWrapping;
-// wallMaterial.repeat.set(20,20);
-// const frontWall = new THREE.Mesh(
-//     new THREE.BoxGeometry(50,20,0.001),
-//     new THREE.MeshBasicMaterial({map: wallMaterial, side: THREE.DoubleSide})
-// );
-// frontWall.position.z = -20;
-// wallGroup.add(frontWall);
-//pared izquierda
-// const leftWall = new THREE.Mesh(
-//     new THREE.BoxGeometry(50,20,0.001),
-//     new THREE.MeshBasicMaterial({map: wallMaterial})
-// );
-// leftWall.position.x = -20;
-// leftWall.rotation.y = Math.PI/2;//rota 90 grados 
-// wallGroup.add(leftWall);
-//pared derecha
-// const rightWall = new THREE.Mesh(
-//     new THREE.BoxGeometry(50,20,0.001),
-//     new THREE.MeshBasicMaterial({map: wallMaterial})
-// );
-// rightWall.position.x = 20;
-// rightWall.rotation.y = Math.PI/2;
-// wallGroup.add(rightWall);
-//pared atras
-// const backWall = new THREE.Mesh(
-//     new THREE.BoxGeometry(50,20,0.001),
-//     new THREE.MeshBasicMaterial({map: wallMaterial})
-// );
-// backWall.position.z = 25;
-// wallGroup.add(backWall);
 
 createBoundingBoxes(walls)
 
