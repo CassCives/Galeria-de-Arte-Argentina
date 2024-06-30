@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import { createBoundingBoxes } from './modules/boundingBox';
+import { createCeiling } from './modules/ceiling';
 import { PointerLockControls, ThreeMFLoader } from 'three-stdlib';
 const scene = new THREE.Scene(); //crear la escena
 
@@ -80,19 +82,21 @@ const backWall = new THREE.Mesh(
 backWall.position.z = 25;
 wallGroup.add(backWall);
 
-for(let i=0;i<wallGroup.children.length;i++){
-    wallGroup.children[i].BoundingBox = new THREE.Box3();
-    wallGroup.children[i].BoundingBox.setFromObject(wallGroup.children[i]);
-}
-
+// for(let i=0;i<wallGroup.children.length;i++){
+//     wallGroup.children[i].BoundingBox = new THREE.Box3();
+//     wallGroup.children[i].BoundingBox.setFromObject(wallGroup.children[i]);
+// }
+createBoundingBoxes(wallGroup)
 
 //crear techo
-const ceilingGeometry = new THREE.PlaneGeometry(50,50);
-const ceilingMaterial = new THREE.MeshBasicMaterial(({color: "white"}))
-const ceilingPlane = new THREE.Mesh(ceilingGeometry,ceilingMaterial);
-ceilingPlane.rotation.x = Math.PI/2;
-ceilingPlane.position.y = 10;
-scene.add(ceilingPlane);
+// const ceilingGeometry = new THREE.PlaneGeometry(50,50);
+// const ceilingMaterial = new THREE.MeshBasicMaterial(({color: "white"}))
+// const ceilingPlane = new THREE.Mesh(ceilingGeometry,ceilingMaterial);
+// ceilingPlane.rotation.x = Math.PI/2;
+// ceilingPlane.position.y = 10;
+// scene.add(ceilingPlane);
+const textureLoader = new THREE.TextureLoader();
+createCeiling(scene, textureLoader);
 
 //crear pinturas
 function createPainting(imageURL, width, height, position){
