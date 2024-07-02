@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 
 export function createWalls(scene, textureLoader) {
-    const wallGroup = new THREE.Group();//grupo que va a contener las paredes
+    let wallGroup = new THREE.Group();//grupo que va a contener las paredes
     scene.add(wallGroup);
     const wallMaterial = textureLoader.load("img/Wall1.jpg");
     wallMaterial.wrapS = THREE.RepeatWrapping;

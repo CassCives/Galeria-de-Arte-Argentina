@@ -10,7 +10,7 @@ export const showMenu = () => {
 };
 
 //bloquear el puntero(se activan los controles), y oculta el menu cuando empieza la experiencia
-export const startExperience = () => {
+export const startExperience = (controls) => {
     //bloquear puntero
     controls.lock();
     hideMenu();
