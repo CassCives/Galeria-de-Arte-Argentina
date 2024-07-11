@@ -37,7 +37,7 @@ export const setupRendering = (
         renderer.gammaFactor = 2.2;
 
         renderer.render(scene, camera);
-        requestAnimationFrame(render);
+        renderer.setAnimationLoop(render);
     };
 
     render();

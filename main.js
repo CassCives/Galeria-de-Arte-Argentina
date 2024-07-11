@@ -8,6 +8,7 @@ import { setupRendering } from "./modules/rendering.js";
 import { setupEventListeners } from "./modules/eventListeners.js";
 //import { addObjectsToScene } from "./modules/sceneHelpers.js";
 import { setupPlayButton } from "./modules/menu.js";
+import { VRButton } from 'three/addons/webxr/VRButton.js';
 
 let { camera, controls, renderer } = setupScene();
 
@@ -20,6 +21,11 @@ createBoundingBoxes(walls)
 setupPlayButton(controls);
 setupEventListeners(controls);
 setupRendering(scene, camera, renderer, controls, walls);
+//intento vr 
+renderer.xr.enabled = true;
+document.body.appendChild(VRButton.createButton(renderer));
+
+
 //luz de ambiente
 const ambientLight = new THREE.AmbientLight(0x101010,1.0); //color, intensidad
 //ambientLight.position = camera.position; //la luz sigue a la camara
