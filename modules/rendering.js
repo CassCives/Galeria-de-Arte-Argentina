@@ -7,7 +7,8 @@ export const setupRendering = (
     renderer,
     // paintings,
     controls,
-    walls
+    walls,
+    teleportVR
 ) => {
     const clock = new THREE.Clock();
 
@@ -35,6 +36,8 @@ export const setupRendering = (
 
         renderer.gammaOutput = true;
         renderer.gammaFactor = 2.2;
+
+        teleportVR.update();
 
         renderer.render(scene, camera);
         renderer.setAnimationLoop(render);

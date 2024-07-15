@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "teleportvr": "^3.0.7",
     "three": "^0.165.0",
     "three-stdlib": "^2.30.3"
   },
