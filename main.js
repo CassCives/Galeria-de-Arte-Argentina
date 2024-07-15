@@ -21,7 +21,6 @@ const ceiling = createCeiling(scene);
 createBoundingBoxes(walls)
 setupPlayButton(controls);
 setupEventListeners(controls);
-
 //intento tp vr
 const teleportVR = new TeleportVR(scene, camera);
 const lefthand = new THREE.Mesh(
@@ -52,10 +51,9 @@ controllerGrip1.addEventListener('connected', (event) => {
 })
 //fin tp
 
-setupRendering(scene, camera, renderer, controls, walls,teleportVR);
+setupRendering(scene, camera, renderer, controls, walls, teleportVR);
 renderer.xr.enabled = true;
 document.body.appendChild(VRButton.createButton(renderer));
-
 
 
 //luz de ambiente
@@ -66,12 +64,6 @@ scene.add(ambientLight);
 const sunLight = new THREE.DirectionalLight(0xddddd, 1.0);
 sunLight.position.y = 15;
 scene.add(sunLight);
-
-// const geometry = new THREE.BoxGeometry(1, 1, 1); //boxgeometry es la forma del objeto
-// const material = new THREE.MeshBasicMaterial({color: 0xff000}); //color del objeto
-// // const cube = new THREE.Mesh(geometry, material);
-
-// // scene.add(cube);
 
 
 //crear pinturas
