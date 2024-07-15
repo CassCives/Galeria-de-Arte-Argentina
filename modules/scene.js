@@ -11,7 +11,7 @@ let renderer;
 export const setupScene = () => {
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000); //camara invisible, es un pov, da profundidad, parametros fov y aspect ratio, lejos y cerca
     scene.add(camera);
-    camera.position.set(0, 2, 15); //se mueve la camara para atras 5 unidades
+    camera.position.set(0, 4, 15); //se mueve la camara para atras 5 unidades
 
     renderer = new THREE.WebGLRenderer({ antialias: false });
     renderer.setSize(window.innerWidth, window.innerHeight);
