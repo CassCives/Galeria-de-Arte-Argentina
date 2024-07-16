@@ -51,9 +51,22 @@ controllerGrip1.addEventListener('connected', (event) => {
 })
 //fin tp
 
-setupRendering(scene, camera, renderer, controls, walls, teleportVR);
-renderer.xr.enabled = true;
+//prueba cubo
+const geometry = new THREE.BoxGeometry( 1, 1, 1 ); 
+const material = new THREE.MeshBasicMaterial( {color: 0xff0000} ); 
+const cube = new THREE.Mesh( geometry, material ); 
+scene.add( cube );
+cube.position.y=3;
+
+    //fin cubo
+
+setupRendering(scene, camera, renderer, controls, walls, teleportVR,cube);
 document.body.appendChild(VRButton.createButton(renderer));
+renderer.xr.enabled = true;
+//const botonVR = document.getElementById("VRButton");
+//botonVR.addEventListener("click", () => {});
+
+
 
 
 //luz de ambiente

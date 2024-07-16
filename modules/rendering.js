@@ -8,7 +8,8 @@ export const setupRendering = (
     // paintings,
     controls,
     walls,
-    teleportVR
+    teleportVR,
+    cube
 ) => {
     const clock = new THREE.Clock();
 
@@ -38,6 +39,9 @@ export const setupRendering = (
         renderer.gammaFactor = 2.2;
 
         teleportVR.update();
+        //prueba cubo
+        cube.rotation.x += 0.02;
+        cube.rotation.y += 0.02;
 
         renderer.render(scene, camera);
         renderer.setAnimationLoop(render);
